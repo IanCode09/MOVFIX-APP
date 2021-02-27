@@ -2,6 +2,7 @@ package com.lexy.movflix.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.lexy.movflix.utils.Credentials;
 
 public class MoviePopularModel {
 
@@ -29,6 +30,8 @@ public class MoviePopularModel {
     @Expose
     private float vote_average;
 
+    String imageUrl = Credentials.IMAGE_URL;
+
     public MoviePopularModel(String title, String poster_path, String release_date, String movie_overview, int movie_id, float vote_average) {
         this.title = title;
         this.poster_path = poster_path;
@@ -43,7 +46,7 @@ public class MoviePopularModel {
     }
 
     public String getPoster_path() {
-        return poster_path;
+        return  "https://image.tmdb.org/t/p/w185_and_h278_bestv2" + poster_path;
     }
 
     public String getRelease_date() {
