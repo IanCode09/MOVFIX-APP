@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="bg_layer">#312333</color>
+    <color name="bg_layer">#212323</color>
     <color name="text_light">#BFBFBF</color>
+    <color name="sub_header">#ADECF0</color>
 </resources>
