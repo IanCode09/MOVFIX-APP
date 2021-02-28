@@ -1,41 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.MainActivity"
-    android:orientation="vertical"
-    android:background="@color/bg_layer">
+    android:layout_height="match_parent">
 
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/russo_one"
-        android:text="MOFVIX"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="40sp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="50dp"/>
+        android:layout_height="match_parent"
+        tools:context=".activity.MainActivity"
+        android:orientation="vertical"
+        android:background="@color/bg_layer">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:text="Popular Movies"
-        android:textColor="@color/sub_header"
-        android:textSize="25sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/russo_one"
+            android:text="MOFVIX"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/popular_movie_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="Popular Movies"
+            android:textColor="@color/sub_header"
+            android:textSize="20sp" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/popular_movie_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="40dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"/>
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="All Genre"
+            android:textColor="@color/sub_header"
+            android:textSize="20sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/genre_movie_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"/>
+    </LinearLayout>
+
+</ScrollView>
+

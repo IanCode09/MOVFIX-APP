@@ -1,5 +1,6 @@
 package com.lexy.movflix.retrofit;
 
+import com.lexy.movflix.model.MovieGenreResponse;
 import com.lexy.movflix.model.MoviePopularResponse;
 import com.lexy.movflix.utils.Credentials;
 
@@ -11,4 +12,7 @@ public interface ApiService {
 
     @GET("movie/popular?api_key=" + api)
     Call<MoviePopularResponse> getAllData();
+
+    @GET("genre/movie/list?api_key=" + api)
+    Call<MovieGenreResponse> getGenreData();
 }
