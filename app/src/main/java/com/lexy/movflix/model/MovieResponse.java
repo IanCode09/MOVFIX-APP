@@ -5,18 +5,18 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MoviePopularResponse {
+public class MovieResponse {
     private int page;
 
     @SerializedName("results")
     @Expose
-    private List<MoviePopularModel> popularResults = null;
+    private List<MovieModel> popularResults = null;
 
     public int getPage() {
         return page;
     }
 
-    public List<MoviePopularModel> getPopular() {
+    public List<MovieModel> getPopular() {
         return popularResults;
     }
 }

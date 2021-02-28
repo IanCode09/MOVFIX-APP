@@ -12,16 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.lexy.movflix.R;
-import com.lexy.movflix.model.MoviePopularModel;
+import com.lexy.movflix.model.MovieModel;
 
 import java.util.List;
 
 public class MoviePopularAdapter extends RecyclerView.Adapter<MoviePopularAdapter.PopularViewHolder> {
 
     private Context context;
-    private List<MoviePopularModel> popularMovieList;
+    private List<MovieModel> popularMovieList;
 
-    public MoviePopularAdapter(Context context, List<MoviePopularModel> popularMovieList) {
+    public MoviePopularAdapter(Context context, List<MovieModel> popularMovieList) {
         this.context = context;
         this.popularMovieList = popularMovieList;
     }

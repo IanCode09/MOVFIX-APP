@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.lexy.movflix.utils.Credentials;
 
-public class MoviePopularModel {
+public class MovieModel {
 
     @SerializedName("title")
     @Expose
@@ -32,7 +32,7 @@ public class MoviePopularModel {
 
     String imageUrl = Credentials.IMAGE_URL;
 
-    public MoviePopularModel(String title, String poster_path, String release_date, String movie_overview, int movie_id, float vote_average) {
+    public MovieModel(String title, String poster_path, String release_date, String movie_overview, int movie_id, float vote_average) {
         this.title = title;
         this.poster_path = poster_path;
         this.release_date = release_date;

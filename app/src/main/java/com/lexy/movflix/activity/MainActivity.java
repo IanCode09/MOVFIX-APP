@@ -13,8 +13,8 @@ import com.lexy.movflix.adapter.MoviePopularAdapter;
 import com.lexy.movflix.model.MovieDetailModel;
 import com.lexy.movflix.model.MovieGenreModel;
 import com.lexy.movflix.model.MovieGenreResponse;
-import com.lexy.movflix.model.MoviePopularModel;
-import com.lexy.movflix.model.MoviePopularResponse;
+import com.lexy.movflix.model.MovieModel;
+import com.lexy.movflix.model.MovieResponse;
 import com.lexy.movflix.retrofit.ApiService;
 import com.lexy.movflix.retrofit.RetrofitInstance;
 
@@ -39,17 +39,17 @@ public class MainActivity extends AppCompatActivity {
         apiService = RetrofitInstance.getRetrofitInstance().create(ApiService.class);
 
 
-        Call<MoviePopularResponse> call = apiService.getAllData();
-        call.enqueue(new Callback<MoviePopularResponse>() {
+        Call<MovieResponse> call = apiService.getAllData();
+        call.enqueue(new Callback<MovieResponse>() {
             @Override
-            public void onResponse(Call<MoviePopularResponse> call, Response<MoviePopularResponse> response) {
-                MoviePopularResponse moviePopularResponse = response.body();
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                MovieResponse movieResponse = response.body();
 
-                getMoviePopularList(moviePopularResponse.getPopular());
+                getMoviePopularList(movieResponse.getPopular());
             }
 
             @Override
-            public void onFailure(Call<MoviePopularResponse> call, Throwable t) {
+            public void onFailure(Call<MovieResponse> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Server is not responding", Toast.LENGTH_SHORT).show();
             }
         });
@@ -82,9 +82,22 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Server is not responding", Toast.LENGTH_SHORT).show();
             }
         });
+
+        Call<MovieResponse> callMovieByGenre = apiService.getMovieByGenre();
+        callMovieByGenre.enqueue(new Callback<MovieResponse>() {
+            @Override
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                MovieResponse movieResponse = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<MovieResponse> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Server is not responding", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private void getMoviePopularList(List<MoviePopularModel> movieList) {
+    private void getMoviePopularList(List<MovieModel> movieList) {
         popularMovieRecyclerView = findViewById(R.id.popular_movie_recycler);
         moviePopularAdapter = new MoviePopularAdapter(this, movieList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
