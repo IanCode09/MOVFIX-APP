@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.lexy.movflix.R;
 import com.lexy.movflix.adapter.MovieGenreAdapter;
 import com.lexy.movflix.adapter.MoviePopularAdapter;
+import com.lexy.movflix.model.MovieDetailModel;
 import com.lexy.movflix.model.MovieGenreModel;
 import com.lexy.movflix.model.MovieGenreResponse;
 import com.lexy.movflix.model.MoviePopularModel;
@@ -64,6 +65,20 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MovieGenreResponse> callGenre, Throwable t) {
+                Toast.makeText(MainActivity.this, "Server is not responding", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Call<MovieDetailModel> callMovieDetail = apiService.getDetailMovie(649087);
+        callMovieDetail.enqueue(new Callback<MovieDetailModel>() {
+            @Override
+            public void onResponse(Call<MovieDetailModel> call, Response<MovieDetailModel> response) {
+                MovieDetailModel movieDetailModel = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<MovieDetailModel> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Server is not responding", Toast.LENGTH_SHORT).show();
             }
         });
