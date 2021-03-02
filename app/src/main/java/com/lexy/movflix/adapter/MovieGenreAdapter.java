@@ -15,6 +15,7 @@ import com.lexy.movflix.model.MovieGenreModel;
 import java.util.List;
 
 public class MovieGenreAdapter extends RecyclerView.Adapter<MovieGenreAdapter.GenreViewHolder> {
+
     private Context context;
     private List<MovieGenreModel> genreMovieList;
 

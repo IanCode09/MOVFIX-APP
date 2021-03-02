@@ -51,7 +51,7 @@ public class MovieDetailModel {
     }
 
     public String getMoviePoster() {
-        return moviePoster;
+        return "https://image.tmdb.org/t/p/w185_and_h278_bestv2" + moviePoster;
     }
 
     public String getMovieRelease() {

@@ -46,7 +46,7 @@ public class MovieModel {
     }
 
     public String getPoster_path() {
-        return  "https://image.tmdb.org/t/p/w185_and_h278_bestv2" + poster_path;
+        return "https://image.tmdb.org/t/p/w185_and_h278_bestv2" + poster_path;
     }
 
     public String getRelease_date() {

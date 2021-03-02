@@ -1,6 +1,7 @@
 package com.lexy.movflix.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.lexy.movflix.R;
+import com.lexy.movflix.activity.MovieDetailActivity;
 import com.lexy.movflix.model.MovieModel;
 
 import java.util.List;
@@ -36,15 +38,25 @@ public class MoviePopularAdapter extends RecyclerView.Adapter<MoviePopularAdapte
 
     @Override
     public void onBindViewHolder(@NonNull PopularViewHolder holder, int position) {
+        int MovieId = popularMovieList.get(position).getMovie_id();
         holder.popularMovieTitle.setText(popularMovieList.get(position).getTitle());
         Glide.with(context).load(popularMovieList.get(position).getPoster_path()).into(holder.popularMovieImage);
+
+        holder.popularMovieTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MovieDetailActivity.class);
+                intent.putExtra("MovieId", MovieId);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
         return popularMovieList.size();
     }
-
 
     public static class PopularViewHolder extends RecyclerView.ViewHolder {
 
