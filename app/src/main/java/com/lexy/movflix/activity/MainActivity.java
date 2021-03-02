@@ -58,24 +58,11 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<MovieGenreResponse> callGenre, Response<MovieGenreResponse> response) {
                 MovieGenreResponse movieGenreResponse = response.body();
 
-                getMovieGenresList(movieGenreResponse.getGenreResults());
+                getNameMovieGenresList(movieGenreResponse.getGenreResults());
             }
 
             @Override
             public void onFailure(Call<MovieGenreResponse> callGenre, Throwable t) {
-                Toast.makeText(MainActivity.this, "Server is not responding", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        Call<MovieResponse> callMovieByGenre = apiService.getMovieByGenre();
-        callMovieByGenre.enqueue(new Callback<MovieResponse>() {
-            @Override
-            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                MovieResponse movieResponse = response.body();
-            }
-
-            @Override
-            public void onFailure(Call<MovieResponse> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Server is not responding", Toast.LENGTH_SHORT).show();
             }
         });
@@ -89,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         popularMovieRecyclerView.setAdapter(moviePopularAdapter);
     }
 
-    private void getMovieGenresList(List<MovieGenreModel> genreList) {
+    private void getNameMovieGenresList(List<MovieGenreModel> genreList) {
         genreMovieRecyclerView = findViewById(R.id.genre_movie_recycler);
         movieGenreAdapter = new MovieGenreAdapter(this, genreList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);

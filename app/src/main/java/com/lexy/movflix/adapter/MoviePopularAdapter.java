@@ -50,7 +50,6 @@ public class MoviePopularAdapter extends RecyclerView.Adapter<MoviePopularAdapte
                 context.startActivity(intent);
             }
         });
-
     }
 
     @Override

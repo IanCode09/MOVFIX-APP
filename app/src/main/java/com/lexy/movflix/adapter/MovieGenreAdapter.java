@@ -1,6 +1,7 @@
 package com.lexy.movflix.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lexy.movflix.R;
+import com.lexy.movflix.activity.MovieByGenreActivity;
 import com.lexy.movflix.model.MovieGenreModel;
 
 import java.util.List;
@@ -34,7 +36,17 @@ public class MovieGenreAdapter extends RecyclerView.Adapter<MovieGenreAdapter.Ge
 
     @Override
     public void onBindViewHolder(@NonNull GenreViewHolder holder, int position) {
+        int GenreId = genreMovieList.get(position).getGenreId();
         holder.genreMovieName.setText(genreMovieList.get(position).getGenreName());
+
+        holder.genreMovieName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MovieByGenreActivity.class);
+                intent.putExtra("GenreId", GenreId);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
