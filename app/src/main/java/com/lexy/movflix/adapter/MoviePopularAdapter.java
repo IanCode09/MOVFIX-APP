@@ -42,13 +42,10 @@ public class MoviePopularAdapter extends RecyclerView.Adapter<MoviePopularAdapte
         holder.popularMovieTitle.setText(popularMovieList.get(position).getTitle());
         Glide.with(context).load(popularMovieList.get(position).getPoster_path()).into(holder.popularMovieImage);
 
-        holder.popularMovieTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MovieDetailActivity.class);
-                intent.putExtra("MovieId", MovieId);
-                context.startActivity(intent);
-            }
+        holder.popularMovieTitle.setOnClickListener(v -> {
+            Intent intent = new Intent(context, MovieDetailActivity.class);
+            intent.putExtra("MovieId", MovieId);
+            context.startActivity(intent);
         });
     }
 

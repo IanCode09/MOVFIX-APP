@@ -39,13 +39,10 @@ public class MovieGenreAdapter extends RecyclerView.Adapter<MovieGenreAdapter.Ge
         int GenreId = genreMovieList.get(position).getGenreId();
         holder.genreMovieName.setText(genreMovieList.get(position).getGenreName());
 
-        holder.genreMovieName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MovieByGenreActivity.class);
-                intent.putExtra("GenreId", GenreId);
-                context.startActivity(intent);
-            }
+        holder.genreMovieName.setOnClickListener(v -> {
+            Intent intent = new Intent(context, MovieByGenreActivity.class);
+            intent.putExtra("GenreId", GenreId);
+            context.startActivity(intent);
         });
     }
 
