@@ -1,18 +1,26 @@
 package com.lexy.movflix.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.lexy.movflix.R;
+import com.lexy.movflix.adapter.MovieGenreInfoAdapter;
 import com.lexy.movflix.model.MovieDetailModel;
+import com.lexy.movflix.model.MovieGenreModel;
+import com.lexy.movflix.model.MovieGenreResponse;
 import com.lexy.movflix.retrofit.ApiService;
 import com.lexy.movflix.retrofit.RetrofitInstance;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +31,9 @@ public class MovieDetailActivity extends AppCompatActivity {
     ApiService apiService;
     TextView movieDetailName, movieDetailRating, movieDetailRelease, movieDetailTagline, movieDetailOverview;
     ImageView movieDetailImage;
+
+    RecyclerView genreInfoRecyclerView;
+    MovieGenreInfoAdapter movieGenreInfoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +56,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                 MovieDetailModel movieDetailModel = response.body();
 
                 movieDetailName.setText(movieDetailModel.getMovieTitle());
-                movieDetailRating.setTextSize(movieDetailModel.getMovieVoteAverage());
+                movieDetailRating.setText(String.valueOf(movieDetailModel.getMovieVoteAverage()));
                 movieDetailRelease.setText(movieDetailModel.getMovieRelease());
                 movieDetailTagline.setText(movieDetailModel.getMovieTagLine());
                 movieDetailOverview.setText(movieDetailModel.getMovieOverview());
@@ -57,5 +68,28 @@ public class MovieDetailActivity extends AppCompatActivity {
                 Log.d("TAG", "Error: " + t);
             }
         });
+
+        Call<MovieGenreResponse> callGenre = apiService.getDetailGenreMovie(extra.getInt("MovieId"));
+        callGenre.enqueue(new Callback<MovieGenreResponse>() {
+            @Override
+            public void onResponse(Call<MovieGenreResponse> callGenre, Response<MovieGenreResponse> response) {
+                MovieGenreResponse movieGenreResponse = response.body();
+
+                getMovieGenreInfoList(movieGenreResponse.getGenreResults());
+            }
+
+            @Override
+            public void onFailure(Call<MovieGenreResponse> callGenre, Throwable t) {
+                Toast.makeText(MovieDetailActivity.this, "Server is not responding", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getMovieGenreInfoList(List<MovieGenreModel> genreInfo) {
+        genreInfoRecyclerView = findViewById(R.id.movie_genre_info_recycler);
+        movieGenreInfoAdapter = new MovieGenreInfoAdapter(this, genreInfo);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        genreInfoRecyclerView.setLayoutManager(layoutManager);
+        genreInfoRecyclerView.setAdapter(movieGenreInfoAdapter);
     }
 }

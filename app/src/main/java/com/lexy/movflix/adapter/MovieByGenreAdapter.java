@@ -39,7 +39,9 @@ public class MovieByGenreAdapter extends RecyclerView.Adapter<MovieByGenreAdapte
     @Override
     public void onBindViewHolder(@NonNull MovieByGenreViewHolder holder, int position) {
         int MovieId = movieByGenreList.get(position).getMovie_id();
+
         holder.movieTitle.setText(movieByGenreList.get(position).getTitle());
+        holder.movieRating.setText(String.valueOf(movieByGenreList.get(position).getVote_average()));
         Glide.with(context).load(movieByGenreList.get(position).getPoster_path()).into(holder.movieImage);
 
         holder.movieTitle.setOnClickListener(v -> {

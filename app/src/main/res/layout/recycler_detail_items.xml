@@ -36,13 +36,13 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_medium"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/movie_genre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Action"
+                android:text=""
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/text_light" />
 

@@ -19,8 +19,11 @@ public interface ApiService {
     @GET("genre/movie/list?api_key=" + api)
     Call<MovieGenreResponse> getGenreData();
 
-    @GET("movie/{id}?api_key=" + api)
+    @GET("movie/{id}?api_key=" + api + "&append_to_response=videos")
     Call<MovieDetailModel> getDetailMovie(@Path("id") int movieId);
+
+    @GET("movie/{id}?api_key=" + api + "&append_to_response=videos")
+    Call<MovieGenreResponse> getDetailGenreMovie(@Path("id") int movieId);
 
     @GET("discover/movie?api_key=" + api + "&with_genres=")
     Call<MovieResponse> getMovieByGenre(@Query("with_genres") int genreId);

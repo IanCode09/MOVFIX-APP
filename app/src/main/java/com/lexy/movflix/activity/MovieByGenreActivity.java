@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.lexy.movflix.R;
 import com.lexy.movflix.adapter.MovieByGenreAdapter;
+import com.lexy.movflix.model.MovieGenreResponse;
 import com.lexy.movflix.model.MovieModel;
 import com.lexy.movflix.model.MovieResponse;
 import com.lexy.movflix.retrofit.ApiService;
