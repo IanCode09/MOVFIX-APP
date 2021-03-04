@@ -1,6 +1,7 @@
 package com.lexy.movflix.retrofit;
 
 import com.lexy.movflix.model.MovieDetailModel;
+import com.lexy.movflix.model.MovieFullDetailResponse;
 import com.lexy.movflix.model.MovieGenreResponse;
 import com.lexy.movflix.model.MovieResponse;
 import com.lexy.movflix.utils.Credentials;
@@ -24,6 +25,12 @@ public interface ApiService {
 
     @GET("movie/{id}?api_key=" + api + "&append_to_response=videos")
     Call<MovieGenreResponse> getDetailGenreMovie(@Path("id") int movieId);
+
+    @GET("movie/{id}?api_key=" + api + "&append_to_response=videos")
+    Call<MovieFullDetailResponse> getFullDetail(@Path("id") int movieId);
+
+//    @GET("movie/{id}?api_key=" + api + "&append_to_response=videos")
+//    Call<MovieProductionResponse> getDetailProductionMovie(@Path("id") int movieId);
 
     @GET("discover/movie?api_key=" + api + "&with_genres=")
     Call<MovieResponse> getMovieByGenre(@Query("with_genres") int genreId);

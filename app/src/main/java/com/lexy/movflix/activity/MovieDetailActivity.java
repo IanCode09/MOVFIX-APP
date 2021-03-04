@@ -14,9 +14,12 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.lexy.movflix.R;
 import com.lexy.movflix.adapter.MovieGenreInfoAdapter;
+import com.lexy.movflix.adapter.MovieProductionAdapter;
 import com.lexy.movflix.model.MovieDetailModel;
+import com.lexy.movflix.model.MovieFullDetailResponse;
 import com.lexy.movflix.model.MovieGenreModel;
 import com.lexy.movflix.model.MovieGenreResponse;
+import com.lexy.movflix.model.MovieProductionModel;
 import com.lexy.movflix.retrofit.ApiService;
 import com.lexy.movflix.retrofit.RetrofitInstance;
 
@@ -32,8 +35,9 @@ public class MovieDetailActivity extends AppCompatActivity {
     TextView movieDetailName, movieDetailRating, movieDetailRelease, movieDetailTagline, movieDetailOverview;
     ImageView movieDetailImage;
 
-    RecyclerView genreInfoRecyclerView;
+    RecyclerView genreInfoRecyclerView, productionInfoRecyclerView;
     MovieGenreInfoAdapter movieGenreInfoAdapter;
+    MovieProductionAdapter movieProductionInfoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +87,21 @@ public class MovieDetailActivity extends AppCompatActivity {
                 Toast.makeText(MovieDetailActivity.this, "Server is not responding", Toast.LENGTH_SHORT).show();
             }
         });
+
+        Call<MovieFullDetailResponse> callProduction = apiService.getFullDetail(extra.getInt("MovieId"));
+        callProduction.enqueue(new Callback<MovieFullDetailResponse>() {
+            @Override
+            public void onResponse(Call<MovieFullDetailResponse> callGenre, Response<MovieFullDetailResponse> response) {
+                MovieFullDetailResponse movieFullDetailResponse = response.body();
+
+                getMovieProductionInfoList(movieFullDetailResponse.getProductionResults());
+            }
+
+            @Override
+            public void onFailure(Call<MovieFullDetailResponse> callGenre, Throwable t) {
+                Toast.makeText(MovieDetailActivity.this, "Server is not responding", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void getMovieGenreInfoList(List<MovieGenreModel> genreInfo) {
@@ -91,5 +110,13 @@ public class MovieDetailActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         genreInfoRecyclerView.setLayoutManager(layoutManager);
         genreInfoRecyclerView.setAdapter(movieGenreInfoAdapter);
+    }
+
+    private void getMovieProductionInfoList(List<MovieProductionModel> productionInfo) {
+        productionInfoRecyclerView = findViewById(R.id.movie_production_info_recycler);
+        movieProductionInfoAdapter = new MovieProductionAdapter(this, productionInfo);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        productionInfoRecyclerView.setLayoutManager(layoutManager);
+        productionInfoRecyclerView.setAdapter(movieProductionInfoAdapter);
     }
 }

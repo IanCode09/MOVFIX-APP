@@ -12,8 +12,7 @@
         tools:context=".activity.MovieDetailActivity"
         android:orientation="vertical"
         android:background="@color/bg_layer"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp">
+        android:paddingStart="20dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -118,6 +117,20 @@
             android:text="After he and his wife are murdered, marine Ray Garrison is resurrected by a team of scientists. Enhanced with nanotechnology, he becomes a superhuman, biotech killing machine—'Bloodshot'. As Ray first trains with fellow super-soldiers, he cannot recall anything from his former life. But when his memories flood back and he remembers the man that killed both him and his wife, he breaks out of the facility to get revenge, only to discover that there's more to the conspiracy than he thought."
             android:textColor="@color/text_light"
             android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Production Companies"
+            android:textColor="@color/sub_header"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/movie_production_info_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
