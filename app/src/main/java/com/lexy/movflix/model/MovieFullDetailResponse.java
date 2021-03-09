@@ -13,4 +13,13 @@ public class MovieFullDetailResponse {
     public List<MovieProductionModel> getProductionResults() {
         return productionResults;
     }
+
+//    @SerializedName("results")
+//    @Expose
+//    private videsMovieVideoModel videoResults = null;
+//
+//    public MovieVideoModel getVideoResults() {
+//        return videoResults;
+//    }
+
 }

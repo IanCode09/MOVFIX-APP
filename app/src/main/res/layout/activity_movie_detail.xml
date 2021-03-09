@@ -12,7 +12,8 @@
         tools:context=".activity.MovieDetailActivity"
         android:orientation="vertical"
         android:background="@color/bg_layer"
-        android:paddingStart="20dp">
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
 
         <TextView
             android:layout_width="match_parent"

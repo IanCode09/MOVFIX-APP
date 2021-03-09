@@ -102,6 +102,8 @@ public class MovieDetailActivity extends AppCompatActivity {
                 Toast.makeText(MovieDetailActivity.this, "Server is not responding", Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 
     private void getMovieGenreInfoList(List<MovieGenreModel> genreInfo) {
